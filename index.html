@@ -2,12 +2,17 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="lib\node_modules\mini.css\dist\mini-nord.min.css" />
 </head>
 <body>
   <div class="container">
+    <div class="col-sm-12">
+      <h2>Paste your source code and send it. Below you will see the images and their respective ALT attributes displayed.<br />***NOTE*** if your img tag does <strong>NOT</strong> contain an ALT attribute than your image will not appear below.</h2>
+      <p>This is to filter out spacer images, so don't put ALT tags in your spacer images.</p>
+    </div>
     <textarea id="userInput"></textarea>
     <button id="sendIt">Send It</button>
-    <div id="output"></div>
+    <div id="output" class="container"></div>
   </div>
   <script
   src="https://code.jquery.com/jquery-3.2.1.slim.js"

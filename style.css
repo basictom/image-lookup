@@ -19,3 +19,9 @@ button {
   margin: 0 auto;
   width:90%;
 }
+.card img{
+  width:auto;
+}
+.alttag {
+  margin: 5px 10px;
+}
