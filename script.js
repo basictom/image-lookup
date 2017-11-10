@@ -4,6 +4,7 @@ $(document).ready(function(){
     let left = "";
     let right = "";
     let imageArray = [];
+    let newValues = {};
     let count = 0;
 
     function clearDivs(){
@@ -12,8 +13,6 @@ $(document).ready(function(){
       };
 
     $(input).find('img').each(function(index, value){
-      let newValues = {};
-      console.log(value);
       if(value.attributes.alt === undefined){
         newValues = {
           src: value.attributes.src.value,
@@ -27,6 +26,12 @@ $(document).ready(function(){
       }
       imageArray.push(newValues);
     });
+
+
+    if(imageArray == ""){
+      alert("No images found.");
+      input = "";
+    }
 
     $(imageArray).each(function(index, value){
       clearDivs();
