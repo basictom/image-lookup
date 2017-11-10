@@ -1,25 +1,24 @@
 $(document).ready(function(){
   $('#sendIt').click(function(){
     let input = $('#userInput').val();
-    let output = "";
+    let left = "";
+    let right = "";
     let imageArray = [];
     let count = 0;
 
     function clearDivs(){
-        $("#output").html(" ");
+        $("#left").html(" ");
+        $("#right").html(" ");
       };
 
     $(input).find('img').each(function(index, value){
       let newValues = {};
-      let values = value.attributes;
-      $(values).each(function(index, value){
-        newValues = {
-          src: value.src,
-          alt: value.alt
-        }
-      });
+      console.log(value);
       if(value.attributes.alt === undefined){
-        return;
+        newValues = {
+          src: value.attributes.src.value,
+          alt: false
+        }
       }else{
         newValues = {
           src: value.attributes.src.value,
@@ -31,18 +30,31 @@ $(document).ready(function(){
 
     $(imageArray).each(function(index, value){
       clearDivs();
-      if(count %3 === 0){
-        output += '<div class="row">';
+      if(value.alt == false){
+        if(count %2 === 0){
+          right += '<div class="row">';
+        }
+        right += '<div class="col-sm-6 card">';
+        right += '<span class="image"><img src="'+value.src+'"></span>'+ '<span class="alttag">Alt tag: "'+value.alt+'"</span>';
+        right += '</div>';
+        count++;
+        if(count %2 === 2){
+          right += '</div>';
+        }
+      }else{
+        if(count %2 == 0){
+          left += '<div class="row">';
+        }
+        left += '<div class="col-sm-6 card">';
+        left += '<span class="image"><img src="'+value.src+'"></span>'+ '<span class="alttag">Alt tag: "'+value.alt+'"</span>';
+        left += '</div>';
+        count++
+        if(count %2 === 2){
+          left += '</div>';
+        }
       }
-      output += '<div class="col-sm-4 card">';
-      output += '<span class="image"><img src="'+value.src+'"></span>'+ '<span class="alttag">Alt tag: "'+value.alt+'"</span>';
-      output += '</div>';
-
-      count++;
-      if(count %3 === 0){
-        output += '</div>';
-      }
-      $('#output').html(output);
+      $('#left').html(left);
+      $('#right').html(right);
     });
   });
 });
